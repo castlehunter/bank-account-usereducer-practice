@@ -1,5 +1,8 @@
+App.js
+
 import { useReducer } from "react";
-import "./App.css";
+import "./styles.css";
+import "use"
 
 /*
 INSTRUCTIONS / CONSIDERATIONS:
@@ -8,8 +11,7 @@ INSTRUCTIONS / CONSIDERATIONS:
 
 2. Use a reducer to model the following state transitions: openAccount, deposit, withdraw, requestLoan, payLoan, closeAccount. Use the `initialState` below to get started.
 
-3. All operations (expect for opening account) can only be performed if isActive is true. 
-   If it's not, just return the original state object. You can check this right at the beginning of the reducer
+3. All operations (expect for opening account) can only be performed if isActive is true. If it's not, just return the original state object. You can check this right at the beginning of the reducer
 
 4. When the account is opened, isActive is set to true. There is also a minimum deposit amount of 500 to open an account (which means that the balance will start at 500)
 
@@ -23,106 +25,64 @@ INSTRUCTIONS / CONSIDERATIONS:
 const initialState = {
   balance: 0,
   loan: 0,
-  isActive: false,
+  isActive: false
 };
 
+
 function reducer(state, action) {
-  switch (action.type) {
+  switch(action.type) {
     case "openAccount":
-      return { ...state, balance: 500, isActive: true };
+    return {};
     case "deposit":
-      return { ...state, balance: state.balance + action.payload };
+    return {};
     case "widthdraw":
-      return { ...state, balance: state.balance - action.payload };
+    return {};
     case "requestLoan":
-      return {
-        ...state,
-        loan: state.loan === 0 ? state.loan + action.payload : action.payload,
-      };
+    return {};
     case "payLoan":
-      return {
-        ...state,
-        loan: state.loan > 0 ? state.loan - action.payload : state.loan,
-      };
+    return {};
     case "closeAccount":
-      return {
-        ...state,
-        isActive: state.balance === 0 && state.loan === 0 ? false : true,
-      };
+    return {};
     default:
-      throw new Error("Action unknown");
+		throw new Error("Action unknown");
   }
-}
+};
 
 export default function App() {
-  const [{ balance, loan, isActive }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
-
+  	const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div className="App">
       <h1>useReducer Bank Account Test</h1>
-      <p>Balance: {balance}</p>
-      <p>Loan: {loan}</p>
+      <p>Balance: X</p>
+      <p>Loan: X</p>
 
       <p>
-        <button
-          onClick={() => {
-            dispatch({ type: "openAccount" });
-          }}
-          disabled={isActive}
-        >
+        <button onClick={() => {}} disabled={!isActive}>
           Open account
         </button>
       </p>
       <p>
-        <button
-          onClick={() => {
-            dispatch({ type: "deposit", payload: 150 });
-          }}
-          disabled={!isActive}
-        >
+        <button onClick={() => {}} disabled={isActive}>
           Deposit 150
         </button>
       </p>
       <p>
-        <button
-          onClick={() => {
-            dispatch({ type: "widthdraw", payload: 50 });
-          }}
-          disabled={!isActive}
-        >
+        <button onClick={() => {}} disabled={isActive}>
           Withdraw 50
         </button>
       </p>
       <p>
-        <button
-          onClick={() => {
-            dispatch({ type: "requestLoan", payload: 5000 });
-          }}
-          disabled={!isActive}
-        >
+        <button onClick={() => {}} disabled={isActive}>
           Request a loan of 5000
         </button>
       </p>
       <p>
-        <button
-          onClick={() => {
-            dispatch({ type: "payLoan", payload: 5000 });
-          }}
-          disabled={!isActive}
-        >
+        <button onClick={() => {}} disabled={isActive}>
           Pay loan
         </button>
       </p>
       <p>
-        <button
-          onClick={() => {
-            dispatch({ type: "closeAccount" });
-          }}
-          disabled={!isActive}
-        >
+        <button onClick={() => {}} disabled={isActive}>
           Close account
         </button>
       </p>
